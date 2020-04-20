@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home work 14.1</title>
+</head>
+<body>
+   <script> 
+
+var mark = {
+    firstName: 'Mark',
+    mass: 80,
+    height: 1.75,
+    calcBmi: function() {
+      this.bmi = this.mass / (this.height * this.height);
+      return this.bmi;
+    }
+  }
+  
+  var john = {
+    firstName: 'John',
+    mass: 100,
+    height: 1.90,
+    calcBmi: function() {
+      this.bmi = this.mass / (this.height * this.height);
+      return this.bmi;
+    }
+  }
+  
+  if (mark.calcBmi() > john.calcBmi()) {
+    
+    console.log(mark.firstName + ' ' + mark.lastName + ' has a ' + mark.bmi + ' BMI' + 
+    ' ' + 'whereas ' + john.firstName + ' ' + john.lastName + ' ' + 'has a ' + john.bmi +
+     ' BMI.' + ' So, ' + mark.firstName + ' ' + mark.lastName + ' ' + 'has an higher BMI than '
+     + john.firstName + ' ' + john.lastName + '.'); 
+    
+    } else if (john.calcBmi() > mark.calcBmi()) {
+    
+    console.log(john.firstName + ' ' + john.lastName + ' has a ' + john.bmi + ' BMI' + 
+    ' ' + 'whereas ' + mark.firstName + ' ' + mark.lastName + ' has a ' + mark.bmi + 
+    ' BMI.' + ' So, ' + john.firstName + ' ' + john.lastName + ' has an higher BMI than ' 
+    + mark.firstName + ' ' + mark.lastName + '.');
+    
+    } else {
+    console.log(mark.firstName + ' ' + mark.lastName + ' and ' + john.firstName + ' ' + 
+    john.lastName + ' have the same BMI');
+  
+  }
+    </script>
+</body>
+</html>
