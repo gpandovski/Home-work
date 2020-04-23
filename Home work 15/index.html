@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homework 15</title>
+</head>
+<body>
+    <div class="container">
+      
+    </div>
+
+    <script>
+        var container = document.querySelector(".container");
+        var label = document.createElement("h1");
+            label.textContent = "My Shopping List";
+
+        var enterProducts = document.createElement("p");
+            enterProducts.textContent = "Enter a new item: ";
+
+        var input = document.createElement("input");
+            input.setAttribute("type", "text");
+        
+        var button = document.createElement("button");
+          button.setAttribute("type", "button");
+          button.textContent = "Add item";
+          button.addEventListener("click", addToCart);
+
+        var list = document.createElement("ul")
+
+          container.appendChild(label);
+          container.appendChild(enterProducts);
+          container.appendChild(input);
+          container.appendChild(button);
+
+        function addToCart() {
+        var productsList = document.createElement("li");
+            productsList.textContent = input.value;
+        
+        var deleteButton = document.createElement("button");
+            deleteButton.setAttribute("type", "button");
+            deleteButton.className = "delete";
+            deleteButton.textContent = "item 1";
+            
+            container.appendChild(productsList);
+            productsList.appendChild(deleteButton);
+        
+            deleteButton.addEventListener("click", deleteProduct);
+
+        function deleteProduct() {
+            container.removeChild(productsList);
+            }
+        }
+    </script>
+</body>
+</html>
