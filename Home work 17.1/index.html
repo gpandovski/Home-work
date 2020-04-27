@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <title>Homework 17.1</title>
+</head>
+<body>
+    <main class="bg-light">       
+        <div class="container">
+            <h1 class="text-muted text-center py-3">Lorem Generator</h1>
+            <hr>
+            <div class="form-group col-md-6 offset-md-3 pb-3">
+                <label for="number">Select number of lorem words you want (up to 50):</label>
+                <select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
+                    <option value="0">-- Select number of words --</option>
+                </select>
+            </div>
+            <p class="py-3"></p>
+        </div>
+    </main>
+    <script>
+        var select = document.querySelector("select");
+        for (var i = 5; i <= 50; i += 5) {
+            var option = document.createElement("option");
+            option.setAttribute("value", [i]);
+            option.textContent = [i];
+            select.appendChild(option);
+        }
+        var lorem = "Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque dicta molestiae repudiandae aliquam veritatis magnam, saepe culpa ipsum nemo eos vero cupiditate ab fugit beatae, maxime eaque reiciendis tempora consequatur ipsam nesciunt laborum dolorem consectetur alias. Inventore, nostrum. Veniam temporibus deleniti odit officia debitis ab minus eaque dicta magni nisi.";
+        lorem = lorem.split(" ");
+        select.addEventListener("change", printLoremText);
+
+        function printLoremText() {
+            var para = document.querySelector("p");
+            var selected = select.value;
+
+            var printLorem = lorem.slice(0, selected);
+            printLorem = printLorem.join(" ");
+            para.textContent = printLorem;
+        }
+
+    </script>
+</body>
+</html>
