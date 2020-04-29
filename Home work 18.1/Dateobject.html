@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homework 18.1</title>
+</head>
+<body>
+    <script>
+      
+    //1
+      var curday = function(sp){
+       today = new Date();
+       var dd = today.getDate();
+       var mm = today.getMonth()+1;
+       var yyyy = today.getFullYear();
+
+       if(dd<10) dd='0'+dd;
+       if(mm<10) mm='0'+mm;
+       return (dd+sp+mm+sp+yyyy);
+};
+       console.log(curday('/'));
+       console.log(curday('-'));
+       console.log(curday('|'));  
+    
+    //2
+    var getDaysInMonth = function(month,year) {
+    return new Date(year, month,0 ).getDate();
+};
+    console.log(getDaysInMonth(4, 2020));
+
+    //3
+    var month_name = function(dt){
+    mlist = [ "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" ];
+    return mlist[dt.getMonth()];
+};
+    console.log(month_name(new Date("10/11/2020")));
+
+    //4
+    var is_weekend =  function(date1){
+    var dt = new Date(date1);
+     
+    if(dt.getDay() == 6 || dt.getDay() == 0)
+       {
+        return "is weekend";
+       }   
+}
+    console.log(is_weekend('Apr 26, 2020'));
+
+    //5
+    var date_diff_indays = function(date1, date2) {
+    dt1 = new Date(date1);
+    dt2 = new Date(date2);
+    return Math.floor((Date.UTC(dt2.getFullYear(), dt2.getMonth(), dt2.getDate()) - Date.UTC(dt1.getFullYear(), dt1.getMonth(), dt1.getDate()) ) /(1000 * 60 * 60 * 24));
+}
+    console.log(date_diff_indays('04/02/2014', '11/04/2014'));
+
+    //6
+    var lastday = function(y,m){
+    return  new Date(y, m +1, 0).getDate();
+}
+    console.log(lastday(2014,11));
+
+    //7
+    function max_date(all_dates) {
+    var max_dt = all_dates[0],
+    max_dtObj = new Date(all_dates[0]);
+    all_dates.forEach(function(dt, index)
+    {
+    if ( new Date( dt ) > max_dtObj)
+    {
+    max_dt = dt;
+    max_dtObj = new Date(dt);
+}
+  });
+    return max_dt;
+}
+    console.log(max_date(['1/1/2020', '10/4/2020', '7/5/2019','1/6/2020','31/8/2020','9/9/2020','12/12/2021','15/10/2019']));
+
+    //Javascript callback function practice
+    //1) incrmenet array element by 1
+    const array1 = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+    const map1 = array1.map(x => x + 1);
+
+    console.log(map1);
+
+    //2) doubles each array element
+    var inputArray = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+    var outputArray = Array.from(inputArray, x => x *2) 
+    
+    console.log(outputArray)
+
+    //3) squares each array element
+    var result = [1,2,3,4,5, 6, 7, 8, 9].map(function(val){
+  return Math.pow(val,2);
+});
+
+console.log(result)
+
+  </script>
+</body>
+</html>
