@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./css/style.css">
+    <title>Homework 18.02</title>
+</head>
+<body>
+    <div class="container text-center mt-10">
+        <h1 class="text-white">New Year Countdown</h1>
+        <div class="counter text-white d-flex justify-content-center">
+            <div class="days">
+                <span>000</span>
+                <span>days</span>
+            </div>
+            <div class="hrs">
+                <span>00</span>
+                <span>hours</span>
+            </div>
+            <div class="mins">
+                <span>00</span>
+                <span>minutes</span>
+            </div>
+            <div class="secs">
+                <span>00</span>
+                <span>seconds</span>
+            </div>
+        </div>
+    </div>
+    <footer class="text-center text-white">
+        <h1>2021</h1>
+    </footer>
+    <script>
+    setInterval(counter, 1000);
+
+    function counter() {
+    var target = new Date('1/1/2021');
+    target = target.getTime();
+
+    var dateNow = new Date();
+    dateNow = dateNow.getTime();
+
+    var diff = target - dateNow;
+
+    var d = Math.floor(diff/1000/60/60/24);
+    var h = Math.floor((diff-(d*24*60*60*1000))/1000/60/60);
+    var m = Math.floor((diff-(d*24*60*60*1000+h*60*60*1000))/1000/60);
+    var s = Math.floor((diff-(d*24*60*60*1000+h*60*60*1000+m*60*1000))/1000);
+
+    d = ("000" + d).slice(-3);
+    h = ("0" + h).slice(-2);
+    m = ("0" + m).slice(-2);
+    s = ("0" + s).slice(-2);
+
+    var days = document.querySelector(".days > span").firstChild;
+    days.textContent = d;
+
+    var hours = document.querySelector(".hrs > span").firstChild;
+    hours.textContent = h;
+
+    var minutes = document.querySelector(".mins > span").firstChild;
+    minutes.textContent = m;
+
+    var seconds = document.querySelector(".secs > span").firstChild;
+    seconds.textContent = s;
+}
+    </script>
+</body>
+</html>
