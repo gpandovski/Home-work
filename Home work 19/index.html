@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./css/style.css">
+    <title>Homework 19</title>
+</head>
+<body>
+    <header>
+        <div class="container p-5">
+            <div class="layer"></div>
+            <h1 class="squad-name"></h1> 
+            <h6 class="location"></h6>
+            <hr>
+            <h4 class="text-center base"></h4>
+            <h6 class="text-center pb-5 formed"></h6>
+        </div>
+    </header>
+    <main class="bg-light">
+        <div class="container">
+            <div class="row d-flex justify-content-between heroes py-5 mt-5"></div>
+        </div>
+    </main>
+
+    <script>
+
+        var url = "https://mdn.github.io/learning-area/javascript/oojs/json/superheroes.json";
+
+        var heroData = [
+                { name: "Molecule Man", imgUrl: "https://upload.wikimedia.org/wikipedia/en/thumb/5/5f/Molecule_Man.jpg/250px-Molecule_Man.jpg", readMoreUrl: "https://en.wikipedia.org/wiki/Molecule_Man" },
+                { name: "Madame Uppercut", imgUrl: "https://upload.wikimedia.org/wikipedia/en/thumb/b/be/Madame-Web.png/250px-Madame-Web.png", readMoreUrl: "https://en.wikipedia.org/wiki/Madame_Web" },
+                { name: "Eternal Flame", imgUrl: "https://vignette.wikia.nocookie.net/marvel-cinematic-universe/images/7/7b/Eternal_Flame.png", readMoreUrl: "https://marvelcinematicdatabase.fandom.com/wiki/Eternal_Flame" }
+            ];
+
+        function getSquadData(url, heroes) {
+            fetch(url).then(response => {
+                return response.json();
+            }).then(data => {
+                var squadName = document.querySelector(".squad-name").textContent = data.squadName;
+                var homeTown = document.querySelector(".location").textContent = data.homeTown;
+                var secretBase = document.querySelector(".base").textContent = data.secretBase;
+                var formed = document.querySelector(".formed").textContent = data.formed;
+                var members = data.members;
+
+                var heroesDiv = document.querySelector(".heroes");
+                var card = '';
+
+                members.forEach(member => {
+                    var name = member.name;
+                    var age = member.age;
+                    var secret = member. secretIdentity;
+                    var powers = member.powers;
+                    var noOfPowers = 0;
+                    var listOfPowers = '';
+                    var heroImage = '';
+                    var heroInfo = '';
+
+                    for(var i = 0; i < powers.length; i++) {
+                        noOfPowers++;
+                        var e = `<li class="list-group-item">${powers[i]}</li>`;
+                        listOfPowers += e;
+                    };
+
+                    for(var i = 0; i < heroes.length; i++) {
+                        if (heroes[i].name === name) {
+                            heroImage = heroes[i].imgUrl;
+                            heroInfo = heroes[i].readMoreUrl;
+                        }
+                    }
+
+                    var strength = noOfPowers === 1 ? 60 : noOfPowers >= 2 && noOfPowers <= 4 ? 80 : noOfPowers > 4 ? 100 : 0;
+                    var color = noOfPowers === 1 ? 'success' : noOfPowers >= 2 && noOfPowers <= 4 ? 'warning' : noOfPowers > 4 ? 'danger' : 'success';
+
+                    card += `
+                        <div class="card mt-3">
+                            <img src="${heroImage}" class="card-img-top" alt="${name}">
+                            <div class="card-body p-3">
+                                <h5 class="card-title font-weight-bold">${name}</h5>
+                                <h6 class="mt-2">Strength:</h6>
+                                <div class="progress">
+                                    <div class="progress-bar progress-bar-striped bg-${color}" role="progressbar" style="width: ${strength}%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                                <h6 class="mt-2">Age: ${age}</h6>
+                                <h6>Secret Identity: ${secret}</h6>
+                                <h6 class="mt-4 font-weight-bold">Powers:</h6>
+                                <ul class="list-group list-group-flush">${listOfPowers}</ul>
+                            </div>
+                            
+                            <div class="card-body">
+                                <a href="${heroInfo}" target="_blank"><button class="btn btn-outline-primary btn-block">Read more ...</button></a>
+                            </div>
+                        </div>
+                    `;
+                });
+                heroesDiv.innerHTML = card;
+            });
+        };
+        getSquadData(url, heroData);
+    </script>
+
+</body>
+</html> 
