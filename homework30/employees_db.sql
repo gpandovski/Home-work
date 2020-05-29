@@ -16,6 +16,27 @@
 CREATE DATABASE IF NOT EXISTS `homestead` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_bin */;
 USE `homestead`;
 
+-- Dumping structure for table homestead.employees
+CREATE TABLE IF NOT EXISTS `employees` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `firstname` varchar(50) DEFAULT NULL,
+  `lastname` varchar(50) DEFAULT NULL,
+  `address` tinytext,
+  `phone` int(11) DEFAULT NULL,
+  `age` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+
+-- Dumping data for table homestead.employees: ~5 rows (approximately)
+/*!40000 ALTER TABLE `employees` DISABLE KEYS */;
+INSERT INTO `employees` (`id`, `firstname`, `lastname`, `address`, `phone`, `age`) VALUES
+	(1, 'Gogo', 'Pandovski', 'Venijamin Macukovski br.15/1 Skopje 1000 Macedonia', 551334, 38),
+	(2, 'Atina ', 'Pesic', 'Skoevska br.55A Skopje 1000 Macedonia', 123456, 42),
+	(3, 'Vesna ', 'Stankovska', 'Cico Popovic br.23 Skopje 1000 Macedonia', 789654, 45),
+	(4, 'Vlado', 'Todorovski', 'Narodni heroi br.1 Bitola 1574 Macedonia', 456123, 39),
+	(5, 'Dejan', 'Andovski', 'Sv.Martinija br.1 Ohrid 1477 Macedonia', 687456, 29);
+/*!40000 ALTER TABLE `employees` ENABLE KEYS */;
+
 -- Dumping structure for table homestead.employees_db
 CREATE TABLE IF NOT EXISTS `employees_db` (
   `Column 1` int(11) DEFAULT NULL
